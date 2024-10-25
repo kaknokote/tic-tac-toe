@@ -3,13 +3,17 @@ import styles from './Field.module.css';
 
 export const Field = ({ field, setField, currentPlayer, setCurrentPlayer, setIsGameEnded, setIsDraw }) => {
     const handleClick = (index) => {
-      if (field[index] || setIsGameEnded) return;
-  
-      const newField = [...field];
-      newField[index] = currentPlayer;
-      setField(newField);
-      checkGameState(newField, currentPlayer);
-      setCurrentPlayer(currentPlayer === 'X' ? '0' : 'X');
+        if (field[index]) {
+            return;
+        }
+        if (setIsGameEnded == true) {
+            return;
+        }
+        const newField = [...field];
+        newField[index] = currentPlayer;
+        setField(newField);
+        checkGameState(newField, currentPlayer);
+        setCurrentPlayer(currentPlayer === 'X' ? '0' : 'X');
     };
   
     const checkGameState = (newField, player) => {
